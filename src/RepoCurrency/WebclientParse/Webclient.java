@@ -17,7 +17,6 @@ public class Webclient {
                 response.append(inputLine);
             }
             in.close();
-            System.out.println(response);
         }
         catch (Exception e){
             System.out.println(e);
