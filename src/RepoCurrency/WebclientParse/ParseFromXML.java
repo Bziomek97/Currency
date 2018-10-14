@@ -64,7 +64,9 @@ public class ParseFromXML implements InterfaceParse{
                 CurrInformation.add(eElement.getElementsByTagName("nazwa_waluty").item(0).getTextContent());
                 CurrInformation.add(eElement.getElementsByTagName("przelicznik").item(0).getTextContent());
                 CurrInformation.add(eElement.getElementsByTagName("kod_waluty").item(0).getTextContent());
-                CurrInformation.add(eElement.getElementsByTagName("kurs_sredni").item(0).getTextContent());
+                String tmp=eElement.getElementsByTagName("kurs_sredni").item(0).getTextContent();
+                tmp = tmp.replace(",",".");
+                CurrInformation.add(tmp);
 
             }
         }
