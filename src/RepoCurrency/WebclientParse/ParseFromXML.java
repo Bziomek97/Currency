@@ -25,8 +25,7 @@ public class ParseFromXML implements InterfaceParse{
         Webclient web = new Webclient();
         try {
             Information=web.RequireData(new URL("http://www.nbp.pl/kursy/xml/lasta.xml"));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+        } catch (MalformedURLException ignored) {
         }
 
         //parse
@@ -47,8 +46,8 @@ public class ParseFromXML implements InterfaceParse{
             if (builder != null) {
                 doc = builder.parse(src);
             }
-        } catch (SAXException | IOException e) {
-            e.printStackTrace();
+        } catch (SAXException | IOException ignored) {
+
         }
 
         assert doc != null;

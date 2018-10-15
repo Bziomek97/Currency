@@ -21,8 +21,7 @@ public class Webclient {
             }
             in.close();
         }
-        catch (Exception e){
-            System.out.println(e);
+        catch (Exception ignored){
         }
         return response.toString();
     }

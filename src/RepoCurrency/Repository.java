@@ -17,8 +17,14 @@ public class Repository {
 
         // if connect do this else download data from CSV or other source of currency data
 
-        InterfaceParse xml= new ParseFromXML();
-        information=xml.Parse();
+        try {
+            InterfaceParse xml = new ParseFromXML();
+            information = xml.Parse();
+        }
+        catch (Exception e){
+            InterfaceParse xml = new ParseFromCSV();
+            information = xml.Parse();
+        }
 
         for(int i=0; i<(information.size()/4);i++){
 
