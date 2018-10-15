@@ -1,6 +1,7 @@
 package RepoCurrency;
 
 import RepoCurrency.WebclientParse.InterfaceParse;
+import RepoCurrency.WebclientParse.ParseFromCSV;
 import RepoCurrency.WebclientParse.ParseFromXML;
 
 import java.util.ArrayList;
