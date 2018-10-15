@@ -2,12 +2,13 @@ package MVC;
 
 import RepoCurrency.Currency;
 import MVC.Controlling.*;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
@@ -18,7 +19,14 @@ public class Interface {
 
     @FXML private TextField CountIn,CountOut,CodeIn,CodeOut;
     @FXML private Button Exchange;
-    @FXML private ListView<String> Lista;
+    @FXML private TableView<Currency> InfoTable;
+    @FXML private TableColumn<Currency,String> CodeCol,NameCol,RateCol;
+    @FXML private TableColumn<Currency,Integer> ConvCol;
+
+    private SimpleStringProperty Code;
+    private SimpleStringProperty Name;
+    private SimpleIntegerProperty Conv;
+    private SimpleStringProperty Rate;
 
     @FXML
     private void initialize(){
@@ -28,13 +36,19 @@ public class Interface {
     }
 
     private void ViewAll(){
-        ObservableList<String> list= FXCollections.observableArrayList();
+        InfoTable.getColumns().clear();
+        ObservableList<Currency> list= FXCollections.observableArrayList();
         ArrayList<Currency> tmp=calc.getCurrList();
-        for(Currency i: tmp) {
-            list.add(i.getName()+" (KOD: "+i.getCode()+") Kurs:"+i.getRate());
-        }
-        list.sort(String::compareToIgnoreCase);
-        Lista.setItems(list);
+
+        CodeCol.setCellValueFactory(new PropertyValueFactory<>("Code"));
+        NameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        ConvCol.setCellValueFactory(new PropertyValueFactory<>("Converter"));
+        RateCol.setCellValueFactory(new PropertyValueFactory<>("Rate"));
+
+        list.addAll(tmp);
+        InfoTable.setItems(list);
+        InfoTable.getColumns().addAll(CodeCol,NameCol,ConvCol,RateCol);
+        InfoTable.getSortOrder().add(NameCol);
     }
 
     private void exchange(){
