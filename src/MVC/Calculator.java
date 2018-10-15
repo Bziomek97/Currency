@@ -16,8 +16,8 @@ public class Calculator {
 
     public double Calculate(double Count, String Cur1, String Cur2){
         double tmp=0;
-        tmp=Count*getCurrByCode(Cur1).getRate();
-        return tmp*(1./getCurrByCode(Cur2).getRate());
+        tmp=Count*(getCurrByCode(Cur1).getRate()/getCurrByCode(Cur1).getConverter());
+        return tmp*(getCurrByCode(Cur2).getConverter()/getCurrByCode(Cur2).getRate());
     }
 
     private Currency getCurrByCode(String Code){

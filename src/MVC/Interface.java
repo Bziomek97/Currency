@@ -1,34 +1,66 @@
 package MVC;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import RepoCurrency.Currency;
+import MVC.Controlling.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
-import java.io.IOException;
+import java.util.ArrayList;
 
-public class Interface extends Application {
+public class Interface {
 
+    private Calculator calc;
 
-    public static void main(String[] args) {
-        launch(Interface.class,args);
+    @FXML private TextField CountIn,CountOut,CodeIn,CodeOut;
+    @FXML private Button Exchange;
+    @FXML private ListView<String> Lista;
+
+    @FXML
+    private void initialize(){
+        calc=new Calculator();
+        ViewAll();
+        exchange();
     }
 
-    @Override
-    public void start(Stage primaryStage) {
-        Parent root = null;
-        try {
-            FXMLLoader loader =new FXMLLoader(getClass().getResource("Interface.fxml"));
-            root = loader.load();
-            primaryStage.setScene(new Scene(root, 600, 400));
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void ViewAll(){
+        ObservableList<String> list= FXCollections.observableArrayList();
+        ArrayList<Currency> tmp=calc.getCurrList();
+        for(Currency i: tmp) {
+            list.add(i.getName()+" (KOD: "+i.getCode()+") Kurs:"+i.getRate());
         }
-        primaryStage.show();
+        list.sort(String::compareToIgnoreCase);
+        Lista.setItems(list);
+    }
 
+    private void exchange(){
+        Exchange.setOnMouseClicked(new javafx.event.EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+
+                digitController digit=new digitController();
+                controlInteface curr=new currController();
+
+                if(digit.check(CountIn.getText()) && curr.check(CodeIn.getText().toUpperCase()) && curr.check(CodeOut.getText().toUpperCase())) {
+                    CountIn.setText(digit.point(CountIn.getText()));
+                    CountOut.setText(String.valueOf(calc.Calculate(Double.parseDouble(CountIn.getText()),
+                            CodeIn.getText().toUpperCase(), CodeOut.getText().toUpperCase())));
+                }
+                else{
+                    CodeOut.clear();
+                    CodeIn.clear();
+                    CountIn.clear();
+                    CodeOut.clear();
+                }
+
+
+            }
+        });
     }
 
 }
-
 

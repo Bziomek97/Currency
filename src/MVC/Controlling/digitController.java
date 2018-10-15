@@ -4,9 +4,7 @@ public class digitController extends controlInteface{
 
     @Override
     public boolean check(String name) {
-        if(name.contains(",")){
-            name=name.replace(",",".");
-        }
+        name=this.point(name);
         try
         {
             double d = Double.parseDouble(name);
@@ -16,5 +14,12 @@ public class digitController extends controlInteface{
             return false;
         }
         return true;
+    }
+
+    public String point(String name){
+        if(name.contains(",")){
+            return name.replace(",",".");
+        }
+        return name;
     }
 }
