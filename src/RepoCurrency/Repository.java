@@ -32,6 +32,13 @@ public class Repository {
             map.put(information.get((i*4)+2),tmp);
         }
 
+        Currency tmp = new Currency();
+        tmp.setName("złoty polski");
+        tmp.setConverter(1);
+        tmp.setCode("PLN");
+        tmp.setRate(1);
+        map.put("PLN",tmp);
+
     }
 
     // Get 1 item
