@@ -16,11 +16,11 @@
       </AnchorPane>
       <AnchorPane prefHeight="130.0" prefWidth="600.0">
          <children>
-            <TextField fx:id="KwotaIn" layoutX="21.0" layoutY="39.0" prefHeight="60.0" prefWidth="171.0" promptText="Kwota" />
-            <TextField layoutX="200.0" layoutY="69.0" prefHeight="26.0" prefWidth="45.0" promptText="KOD" />
-            <Button layoutX="529.0" layoutY="121.0" mnemonicParsing="false" text="Oblicz" />
-            <TextField layoutX="328.0" layoutY="39.0" prefHeight="60.0" prefWidth="171.0" promptText="Kwota" />
-            <TextField layoutX="507.0" layoutY="69.0" prefHeight="26.0" prefWidth="45.0" promptText="KOD" />
+            <TextField fx:id="CountIn" layoutX="21.0" layoutY="39.0" prefHeight="60.0" prefWidth="171.0" promptText="Kwota" />
+            <TextField fx:id="CodeIn" layoutX="200.0" layoutY="69.0" prefHeight="26.0" prefWidth="45.0" promptText="KOD" />
+            <Button fx:id="Exchange" layoutX="529.0" layoutY="121.0" mnemonicParsing="false" text="Oblicz" />
+            <TextField fx:id="CountOut" editable="false" layoutX="328.0" layoutY="39.0" prefHeight="60.0" prefWidth="171.0" />
+            <TextField fx:id="CodeOut" layoutX="507.0" layoutY="69.0" prefHeight="26.0" prefWidth="45.0" promptText="KOD" />
             <Label layoutX="273.0" layoutY="61.0" text="   →" />
          </children>
       </AnchorPane>
