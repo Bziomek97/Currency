@@ -1,22 +1,34 @@
 package MVC;
 
-public class Interface {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-    public static void main(String[] args){
-        Calculator calc=new Calculator();
+import java.io.IOException;
+
+public class Interface extends Application {
+
+
+    public static void main(String[] args) {
+        launch(Interface.class,args);
     }
 
-    void ViewAll(){
-        //TODO Interface services
-
+    @Override
+    public void start(Stage primaryStage) {
+        Parent root = null;
+        try {
+            FXMLLoader loader =new FXMLLoader(getClass().getResource("Interface.fxml"));
+            root = loader.load();
+            primaryStage.setScene(new Scene(root, 600, 400));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        primaryStage.show();
 
     }
-
-    void exchange(){
-        //TODO Action when press Exchange button
-
-
-    }
-
 
 }
+
+
