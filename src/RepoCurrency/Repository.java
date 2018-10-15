@@ -19,7 +19,8 @@ public class Repository {
         InterfaceParse xml= new ParseFromXML();
         information=xml.Parse();
 
-        for(int i=0; i<(information.size()/4);i++){
+        int i=0;
+        for(; i<(information.size()/4);i++){
 
             int tmpdigit= Integer.parseInt(information.get((i*4)+1));
             double tmpdouble =  Double.parseDouble(information.get((i * 4) + 3));
@@ -31,6 +32,13 @@ public class Repository {
             tmp.setRate(tmpdouble);
             map.put(information.get((i*4)+2),tmp);
         }
+
+        Currency tmp = new Currency();
+        tmp.setName("Polski złoty");
+        tmp.setConverter(1);
+        tmp.setCode("PLN");
+        tmp.setRate(1);
+        map.put("PLN",tmp);
 
     }
 

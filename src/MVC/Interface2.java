@@ -1,6 +1,7 @@
 package MVC;
 
 import RepoCurrency.Currency;
+import MVC.Controlling.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -40,7 +41,24 @@ public class Interface2 {
         Exchange.setOnMouseClicked(new javafx.event.EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event) {
-                CountOut.setText(String.valueOf(calc.Calculate(Double.parseDouble(CountIn.getText()),CodeIn.getText(),CodeOut.getText())));
+
+                controlInteface digit=new digitController();
+                controlInteface curr=new currController();
+
+                if(digit.check(CountIn.getText()) && curr.check(CodeIn.getText()) && curr.check(CodeOut.getText())) {
+                    if(CountIn.getText().contains(",")){
+                        String tmp= CountIn.getText().replace(",",".");
+                        CountIn.setText(tmp);
+                    }
+                    CountOut.setText(String.valueOf(calc.Calculate(Double.parseDouble(CountIn.getText()), CodeIn.getText(), CodeOut.getText())));
+                }
+                else{
+                    CodeOut.clear();
+                    CodeIn.clear();
+                    CountIn.clear();
+                }
+
+
             }
         });
     }
